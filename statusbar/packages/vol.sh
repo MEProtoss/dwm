@@ -1,3 +1,4 @@
+export LANG=en_US.UTF-8
 #! /bin/bash
 # VOL 音量脚本
 # 本脚本需要你自行修改音量获取命令
@@ -6,7 +7,7 @@
 # $ pactl list sinks | grep RUNNING -A 8
 #         State: RUNNING
 #         Name: bluez_output.88_C9_E8_14_2A_72.1
-#         Description: Wi-1000XM4
+#         Description: W-1000XM2
 #         Driver: PipeWire
 #         Sample Specification: float32le 2ch 48000Hz
 #         Channel Map: front-left,front-right
@@ -64,9 +65,9 @@ notify() {
 
 click() {
 	case "$1" in
-	L) notify ;;                                           # 仅通知
-	M) pactl set-sink-mute @DEFAULT_SINK@ toggle ;;        # 切换静音
-	R) killall pavucontrol || pavucontrol --class=FGN & ;; # 打开pavucontrol
+	L) notify ;;                                    # 仅通知
+	M) pactl set-sink-mute @DEFAULT_SINK@ toggle ;; # 切换静音
+	R) killall pavucontrol || pavucontrol ;;        # 打开pavucontrol
 	U)
 		pactl set-sink-volume @DEFAULT_SINK@ +5%
 		notify
